@@ -11,7 +11,7 @@ def run_orders_gold(spark):
 
         orders_df = spark.read.format("delta").table("retail_catalog.silver.orders")
 
-        # KPI: Daily order count and distinct customer count
+        #Daily order count and distinct customer count
         gold_df = orders_df.withColumn("order_date", to_date("order_date")) \
             .groupBy("order_date") \
             .agg(
