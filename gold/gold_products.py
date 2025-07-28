@@ -10,7 +10,7 @@ def run_products_gold(spark):
 
         products_df = spark.read.format("delta").table("retail_catalog.silver.products")
 
-        # Sample KPI: Count of active products per category
+        #Count of active products per category
         gold_df = products_df.filter("is_active = true").groupBy("category").count().withColumnRenamed("count", "active_products")
 
         gold_df.write.format("delta").mode("overwrite").saveAsTable("retail_catalog.gold.active_products_by_category")
