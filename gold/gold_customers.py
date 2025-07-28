@@ -10,10 +10,9 @@ def run_customers_gold(spark):
     try:
         logger.info("Starting customers_gold transformation")
 
-        # Load Silver data
         customers_df = spark.read.format("delta").table("retail_catalog.silver.customers")
 
-        # Example Transformation: Count of customers by city
+        # Count of customers by city
         customers_gold_df = customers_df.groupBy("city").count().withColumnRenamed("count", "customer_count")
 
         customers_gold_df.write.format("delta").mode("overwrite").saveAsTable("retail_catalog.gold.customers_by_city")
