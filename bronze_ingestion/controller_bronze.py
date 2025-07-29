@@ -11,10 +11,6 @@ from config.config_bronze import (
 from bronze_loader_autoloader import load_bronze_table
 
 spark = SparkSession.builder.appName("BronzeLoader").getOrCreate()
-# spark.conf.set(
-#     f"fs.azure.account.key.{ADLS_ACCOUNT}.dfs.core.windows.net",
-#     ADLS_ACCOUNT_KEY
-# )
 
 for table in TABLES_TO_LOAD:
     try:

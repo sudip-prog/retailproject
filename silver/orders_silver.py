@@ -25,12 +25,7 @@ def process_orders():
     checkpoint_path = "abfss://retailstream360@storageaccountsudip1.dfs.core.windows.net/silver/checkpoints"
 
     try:
-        schema = StructType([
-            StructField("order_id", StringType()),
-            StructField("customer_id", StringType()),
-            StructField("product_id", StringType()), 
-            StructField("order_date", DateType()),
-            StructField("status", StringType())])
+
         kafka_options = {
             "kafka.bootstrap.servers" : KAFKA_BROKER, 
             "topic": KAFKA_TOPIC, 
